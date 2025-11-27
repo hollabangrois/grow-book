@@ -316,18 +316,19 @@ export default function ParticipantsTable() {
             </div>
           </div>
 
-          <table className="table table-bordered table-striped">
-            <thead>
-              <tr>
-                <th>Nama</th>
-                <th>Email</th>
-                <th>Telepon</th>
-                <th>Alamat</th>
-                <th className="text-center">Jumlah Pelatihan</th>
-                <th>Aksi</th>
-              </tr>
-            </thead>
-            <tbody>
+          <div className="table-responsive" style={{ WebkitOverflowScrolling: 'touch' }}>
+            <table className="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>Nama</th>
+                  <th>Email</th>
+                  <th>Telepon</th>
+                  <th>Alamat</th>
+                  <th className="text-center">Jumlah Pelatihan</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
               {loading ? (
                 <tr>
                   <td colSpan={6} className="text-center">
@@ -355,31 +356,36 @@ export default function ParticipantsTable() {
                       </span>
                     </td>
                     <td>
-                      <button
-                        className="btn btn-sm btn-success me-1"
-                        onClick={() => handleViewTrainings(participant)}
-                        title="Lihat detail pelatihan"
-                      >
-                        <i className="bi bi-eye"></i>
-                      </button>
-                      <button
-                        className="btn btn-sm btn-info me-1"
-                        onClick={() => handleEdit(participant)}
-                      >
-                        <i className="bi bi-pencil"></i>
-                      </button>
-                      <button
-                        className="btn btn-sm btn-danger"
-                        onClick={() => handleDelete(participant.id)}
-                      >
-                        <i className="bi bi-trash"></i>
-                      </button>
+                      <div className="d-flex gap-1 flex-wrap">
+                        <button
+                          className="btn btn-sm btn-success"
+                          onClick={() => handleViewTrainings(participant)}
+                          title="Lihat detail pelatihan"
+                        >
+                          <i className="bi bi-eye"></i>
+                        </button>
+                        <button
+                          className="btn btn-sm btn-info"
+                          onClick={() => handleEdit(participant)}
+                          title="Edit peserta"
+                        >
+                          <i className="bi bi-pencil"></i>
+                        </button>
+                        <button
+                          className="btn btn-sm btn-danger"
+                          onClick={() => handleDelete(participant.id)}
+                          title="Hapus peserta"
+                        >
+                          <i className="bi bi-trash"></i>
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))
               )}
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
 
           {/* Pagination */}
           {totalPages > 1 && (

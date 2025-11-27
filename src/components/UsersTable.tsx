@@ -281,18 +281,19 @@ export default function UsersTable() {
             </div>
           </div>
 
-          <table className="table table-bordered table-striped">
-            <thead>
-              <tr>
-                <th>Nama</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Status</th>
-                <th>Login Terakhir</th>
-                <th>Aksi</th>
-              </tr>
-            </thead>
-            <tbody>
+          <div className="table-responsive" style={{ WebkitOverflowScrolling: 'touch' }}>
+            <table className="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>Nama</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                  <th>Login Terakhir</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
               {loading ? (
                 <tr>
                   <td colSpan={6} className="text-center">
@@ -324,18 +325,29 @@ export default function UsersTable() {
                     </td>
                     <td>{user.last_login ? new Date(user.last_login).toLocaleString('id-ID') : 'Belum pernah'}</td>
                     <td>
-                      <button className="btn btn-sm btn-info me-1" onClick={() => handleEdit(user)}>
-                        <i className="bi bi-pencil"></i>
-                      </button>
-                      <button className="btn btn-sm btn-danger" onClick={() => handleDelete(user.id)}>
-                        <i className="bi bi-trash"></i>
-                      </button>
+                      <div className="d-flex gap-1 flex-wrap">
+                        <button 
+                          className="btn btn-sm btn-info" 
+                          onClick={() => handleEdit(user)}
+                          title="Edit pengguna"
+                        >
+                          <i className="bi bi-pencil"></i>
+                        </button>
+                        <button 
+                          className="btn btn-sm btn-danger" 
+                          onClick={() => handleDelete(user.id)}
+                          title="Hapus pengguna"
+                        >
+                          <i className="bi bi-trash"></i>
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))
               )}
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
 
           {/* Pagination */}
           {totalPages > 1 && (

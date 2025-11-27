@@ -694,8 +694,8 @@ export default function ReportsPage() {
                       </div>
 
                       <h6 className="mt-3">Daftar Pelatihan yang Diikuti:</h6>
-                      <div className="table-responsive">
-                        <table className="table table-bordered table-striped table-sm">
+                      <div className="table-responsive" style={{ WebkitOverflowScrolling: 'touch' }}>
+                        <table className="table table-bordered table-striped table-sm" style={{ minWidth: '800px' }}>
                           <thead>
                             <tr>
                               <th>No</th>
@@ -752,8 +752,8 @@ export default function ReportsPage() {
                               {r.days.length > 0 && (
                                 <div className="mb-3">
                                   <strong>Hari Pelatihan:</strong>
-                                  <div className="table-responsive mt-2">
-                                    <table className="table table-bordered table-sm">
+                                  <div className="table-responsive mt-2" style={{ WebkitOverflowScrolling: 'touch' }}>
+                                    <table className="table table-bordered table-sm" style={{ minWidth: '600px' }}>
                                       <thead>
                                         <tr>
                                           <th>Hari</th>
@@ -928,7 +928,7 @@ export default function ReportsPage() {
                   {report.days.length > 0 && (
                     <div className="mb-3">
                       <h6>Hari Pelatihan</h6>
-                      <div className="table-responsive">
+                      <div className="table-responsive" style={{ WebkitOverflowScrolling: 'touch' }}>
                         <table className="table table-bordered table-sm">
                           <thead>
                             <tr>
@@ -956,8 +956,8 @@ export default function ReportsPage() {
                   {report.participants.length > 0 && (
                     <div>
                       <h6>Peserta</h6>
-                      <div className="table-responsive">
-                        <table className="table table-bordered table-striped table-sm">
+                      <div className="table-responsive" style={{ WebkitOverflowScrolling: 'touch' }}>
+                        <table className="table table-bordered table-striped table-sm" style={{ minWidth: '800px' }}>
                           <thead>
                             <tr>
                               <th>Nama</th>

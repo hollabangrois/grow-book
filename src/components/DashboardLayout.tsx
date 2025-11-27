@@ -109,7 +109,7 @@ export default async function DashboardLayout({ children }: DashboardLayoutProps
             {/* Main Content */}
             <main className="app-main">
               <div className="app-content">
-                <div className="container-fluid">{children}</div>
+                <div className="container-fluid" style={{ paddingLeft: '15px', paddingRight: '15px' }}>{children}</div>
               </div>
             </main>
 

@@ -365,32 +365,34 @@ export default function TrainingsTable() {
           </div>
         </div>
         <div className="card-body">
-          <table className="table table-bordered table-striped">
-            <thead>
-              <tr>
-                <th>Judul</th>
-                <th>Hari</th>
-                <th>Rentang Tanggal</th>
-                <th>Lokasi</th>
-                <th>Instruktur</th>
-                <th>Status</th>
-                <th>Aksi</th>
-              </tr>
-            </thead>
-            <tbody>
-              {trainings.length === 0 ? (
+          <div className="table-responsive" style={{ WebkitOverflowScrolling: 'touch' }}>
+            <table className="table table-bordered table-striped">
+              <thead>
                 <tr>
-                  <td colSpan={7} className="text-center">
-                    Tidak ada pelatihan ditemukan
-                  </td>
+                  <th>Judul</th>
+                  <th>Hari</th>
+                  <th>Rentang Tanggal</th>
+                  <th>Lokasi</th>
+                  <th>Instruktur</th>
+                  <th>Status</th>
+                  <th>Aksi</th>
                 </tr>
-              ) : (
-                trainings.map((training) => (
-                  <TrainingRow key={training.id} training={training} onEdit={handleEdit} onDelete={handleDelete} />
-                ))
-              )}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {trainings.length === 0 ? (
+                  <tr>
+                    <td colSpan={7} className="text-center">
+                      Tidak ada pelatihan ditemukan
+                    </td>
+                  </tr>
+                ) : (
+                  trainings.map((training) => (
+                    <TrainingRow key={training.id} training={training} onEdit={handleEdit} onDelete={handleDelete} />
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 
@@ -681,12 +683,22 @@ function TrainingRow({
         </span>
       </td>
       <td>
-        <button className="btn btn-sm btn-info me-1" onClick={() => onEdit(training)}>
-          <i className="bi bi-pencil"></i>
-        </button>
-        <button className="btn btn-sm btn-danger" onClick={() => onDelete(training.id)}>
-          <i className="bi bi-trash"></i>
-        </button>
+        <div className="d-flex gap-1 flex-wrap">
+          <button 
+            className="btn btn-sm btn-info" 
+            onClick={() => onEdit(training)}
+            title="Edit pelatihan"
+          >
+            <i className="bi bi-pencil"></i>
+          </button>
+          <button 
+            className="btn btn-sm btn-danger" 
+            onClick={() => onDelete(training.id)}
+            title="Hapus pelatihan"
+          >
+            <i className="bi bi-trash"></i>
+          </button>
+        </div>
       </td>
     </tr>
   );
