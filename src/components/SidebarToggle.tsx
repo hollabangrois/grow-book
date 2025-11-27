@@ -11,7 +11,7 @@ export default function SidebarToggle() {
       }
     };
 
-    const handleMainContentClick = (event: MouseEvent | TouchEvent) => {
+    const handleMainContentClick = (event: Event) => {
       const target = event.target as HTMLElement;
       const appWrapper = document.querySelector('.app-wrapper');
       
