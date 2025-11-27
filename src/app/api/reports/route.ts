@@ -85,7 +85,7 @@ export async function GET(request: NextRequest) {
 
       if (daysError) throw daysError;
 
-      const trainingIds = [...new Set(trainingDays.map((td) => td.training_id))];
+      const trainingIds = [...new Set((trainingDays || []).map((td: any) => td.training_id))];
 
       if (trainingIds.length > 0) {
         const { data, error } = await supabase
@@ -192,8 +192,9 @@ export async function GET(request: NextRequest) {
           cancelled: 0,
         };
 
-        participants.forEach((participant) => {
-          Object.values(participant.attendance_by_day).forEach((attendance: { status: string; attendance_time: string | null }) => {
+        participants.forEach((participant: any) => {
+          const attendanceByDay = participant.attendance_by_day as Record<string, { status: string; attendance_time: string | null }>;
+          (Object.values(attendanceByDay) as Array<{ status: string; attendance_time: string | null }>).forEach((attendance) => {
             const status = attendance.status;
             if (status === 'attended') attendanceStats.attended++;
             else if (status === 'absent') attendanceStats.absent++;
@@ -210,7 +211,7 @@ export async function GET(request: NextRequest) {
             location: training.location,
             instructor: training.instructor,
           },
-          days: (days || []).map((day) => ({
+          days: (days || []).map((day: any) => ({
             id: day.id,
             day_number: day.day_number,
             training_date: day.training_date,

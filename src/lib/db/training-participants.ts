@@ -31,7 +31,7 @@ export async function updateAttendanceStatus(
 
   if (status === 'attended') {
     updateData.attendance_time = attendanceTime || new Date().toISOString();
-  } else if (status !== 'attended') {
+  } else {
     updateData.attendance_time = null;
   }
 

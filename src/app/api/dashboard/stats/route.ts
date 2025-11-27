@@ -113,7 +113,7 @@ export async function GET(request: NextRequest) {
     const todayDate = new Date();
     todayDate.setHours(0, 0, 0, 0);
     
-    const sortedUpcoming = upcomingWithDays
+    const sortedUpcoming = (upcomingWithDays as Array<{ training_date: string | null; [key: string]: any }>)
       .filter(t => {
         if (t.training_date) {
           const trainingDate = new Date(t.training_date);
