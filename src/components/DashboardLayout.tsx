@@ -5,6 +5,7 @@ import Link from 'next/link';
 import LogoutButton from './LogoutButton';
 import DashboardBody from './DashboardBody';
 import SidebarMenu from './SidebarMenu';
+import SidebarToggle from './SidebarToggle';
 import Script from 'next/script';
 
 interface DashboardLayoutProps {
@@ -46,6 +47,7 @@ export default async function DashboardLayout({ children }: DashboardLayoutProps
       />
       <link rel="stylesheet" href="/adminlte/css/adminlte.css" />
       <DashboardBody>
+      <SidebarToggle />
       <div style={{ minHeight: '100vh' }}>
           <div className="app-wrapper">
             {/* Header */}
@@ -107,7 +109,7 @@ export default async function DashboardLayout({ children }: DashboardLayoutProps
             </aside>
 
             {/* Main Content */}
-            <main className="app-main">
+            <main className="app-main" id="main-content">
               <div className="app-content">
                 <div className="container-fluid" style={{ paddingLeft: '15px', paddingRight: '15px' }}>{children}</div>
               </div>
@@ -163,6 +165,29 @@ export default async function DashboardLayout({ children }: DashboardLayoutProps
                   });
                 }
               });
+            `}
+          </Script>
+          <Script id="sidebar-overlay-config">
+            {`
+              function ensureSidebarOverlay() {
+                const sidebarOverlay = document.querySelector('.sidebar-overlay');
+                if (sidebarOverlay) {
+                  const overlayElement = sidebarOverlay;
+                  overlayElement.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+                  overlayElement.style.cursor = 'pointer';
+                  overlayElement.style.zIndex = '1037';
+                } else {
+                  setTimeout(ensureSidebarOverlay, 100);
+                }
+              }
+              
+              if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', function() {
+                  setTimeout(ensureSidebarOverlay, 300);
+                });
+              } else {
+                setTimeout(ensureSidebarOverlay, 300);
+              }
             `}
           </Script>
       </div>
