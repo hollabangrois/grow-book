@@ -193,7 +193,7 @@ export async function GET(request: NextRequest) {
         };
 
         participants.forEach((participant) => {
-          Object.values(participant.attendance_by_day).forEach((attendance) => {
+          Object.values(participant.attendance_by_day).forEach((attendance: { status: string; attendance_time: string | null }) => {
             const status = attendance.status;
             if (status === 'attended') attendanceStats.attended++;
             else if (status === 'absent') attendanceStats.absent++;
